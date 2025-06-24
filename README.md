@@ -24,7 +24,7 @@ pip install -r requirements.txt
 - Trên Android (PE):
 ```bash
 chmod +x setup.sh
-sed -i 's/\r$//' "$0"
+sed -i 's/\r$//' setup.sh
 ./setup.sh
 ```
 
