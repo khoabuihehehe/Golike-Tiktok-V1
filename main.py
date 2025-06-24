@@ -179,7 +179,7 @@ class GUI:
     def create_table(self):
         title = "[yellow]===[/yellow]   [white]Danh sách luồng GOLIKE[/white]   [yellow]===[/yellow]"
         tab = Table(title=title, show_header=True)
-        widths = {'STT': 5, 'USER': 18, 'DEVICE': 20, 'TIME': 10, 'DONE': 10, 'SKIP': 10, 'EARN': 10}
+        widths = {'STT': 5, 'USER': 15, 'DEVICE': 27, 'TIME': 10, 'DONE': 8, 'SKIP': 8, 'EARN': 8}
         size = shutil.get_terminal_size()
         ter_width = size.columns
         total_width = sum(widths.values())
