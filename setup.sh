@@ -1,12 +1,4 @@
 #!/bin/bash
-if grep -q $'\r' "$0"; then
-echo -e "\033[0;33m[*] Phát hiện dòng CRLF, đang chuyển sang LF...\033[0m"
-temp_script=$(mktemp)
-tr -d '\r' < "$0" > "$temp_script"
-chmod +x "$temp_script"
-exec "$temp_script"
-exit
-fi
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
@@ -38,7 +30,7 @@ success "Cài gói hệ thống thành công"
 divider
 step "Cập nhật những gói setuptools"
 divider
-pip install -q setuptools wheel cython -U
+pip install -q setuptools wheel cython -U > /dev/null 2>&1
 success "Cập nhật gói setuptools thành công"
 divider
 step "Thiết lập những gói Python"
@@ -47,13 +39,13 @@ echo -ne "${CYAN}Đang cài lxml==5.4.0...${NC} "
 pip uninstall -y lxml > /dev/null 2>&1
 CFLAGS="-Wno-error=incompatible-function-pointer-types -O0 -I/data/data/com.termux/files/usr/include" \
 LDFLAGS="-L/data/data/com.termux/files/usr/lib" \
-pip install -q lxml==5.4.0 > /dev/null 2>&1
+PYTHONWARNINGS=ignore pip install -q lxml==5.4.0 > /dev/null 2>&1
 [ $? -eq 0 ] && echo -e "${GREEN}✔ Thành công${NC}" || fail "Cài lxml thất bại"
 install_pkg() {
 local name="$1"
 local version="$2"
 echo -ne "${CYAN}Đang cài ${name}==${version}...${NC} "
-pip install -q "${name}==${version}" > /dev/null 2>&1 || fail "Cài ${name} thất bại"
+PYTHONWARNINGS=ignore pip install -q "${name}==${version}" > /dev/null 2>&1 || fail "Cài ${name} thất bại"
 echo -e "${GREEN}✔ Thành công${NC}"
 }
 install_pkg "rich" "14.0.0"
