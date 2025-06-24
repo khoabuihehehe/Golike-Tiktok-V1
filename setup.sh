@@ -6,17 +6,17 @@ CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 divider() {
-  echo -e "${YELLOW}---------------------------------------------${NC}"
+echo -e "${YELLOW}---------------------------------------------${NC}"
 }
 step() {
-  echo -e "[*] ${YELLOW}$1${NC}"
+echo -e "[*] ${YELLOW}$1${NC}"
 }
 success() {
-  echo -e "${GREEN}[✓] $1${NC}"
+echo -e "${GREEN}[✓] $1${NC}"
 }
 fail() {
-  echo -e "${RED}[✘] $1${NC}"
-  exit 1
+echo -e "${RED}[✘] $1${NC}"
+exit 1
 }
 divider
 step "Cập nhật hệ thống..."
@@ -40,14 +40,14 @@ echo -ne "${CYAN}Đang cài lxml==5.4.0...${NC} "
 pip uninstall -y lxml > /dev/null 2>&1
 CFLAGS="-Wno-error=incompatible-function-pointer-types -O0 -I/data/data/com.termux/files/usr/include" \
 LDFLAGS="-L/data/data/com.termux/files/usr/lib" \
-pip install -q lxml==5.4.0
+PYTHONWARNINGS=ignore pip install -q lxml==5.4.0 2>/dev/null
 [ $? -eq 0 ] && echo -e "${GREEN}✔ Thành công${NC}" || fail "Cài lxml thất bại"
 install_pkg() {
-  local name="$1"
-  local version="$2"
-  echo -ne "${CYAN}Đang cài ${name}==${version}...${NC} "
-  pip install -q "${name}==${version}" || fail "Cài ${name} thất bại"
-  echo -e "${GREEN}✔ Thành công${NC}"
+local name="$1"
+local version="$2"
+echo -ne "${CYAN}Đang cài ${name}==${version}...${NC} "
+PYTHONWARNINGS=ignore pip install -q "${name}==${version}" 2>/dev/null || fail "Cài ${name} thất bại"
+echo -e "${GREEN}✔ Thành công${NC}"
 }
 install_pkg "rich" "14.0.0"
 install_pkg "numpy" "2.2.6"
@@ -71,7 +71,6 @@ print('pillow:', PIL.__version__)
 print('adbutils:', adbutils.__version__)
 print('requests:', requests.__version__)
 print('uiautomator2:', uiautomator2.__version__)
-print('opencv-python:', cv2.__version__)
-"
+print('opencv-python:', cv2.__version__)"
 divider
 success "Cài đặt hoàn tất! Môi trường Python đã sẵn sàng."
