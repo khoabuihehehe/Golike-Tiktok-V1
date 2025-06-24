@@ -68,6 +68,5 @@ print('pillow:', PIL.__version__)
 print('adbutils:', adbutils.__version__)
 print('requests:', requests.__version__)
 print('uiautomator2:', uiautomator2.__version__)
-print('opencv-python:', cv2.__version__)"
 divider
 success "Cài đặt hoàn tất! Môi trường Python đã sẵn sàng."
