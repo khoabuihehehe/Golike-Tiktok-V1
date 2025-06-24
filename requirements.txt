@@ -6,5 +6,3 @@ adbutils==2.9.3
 requests==2.32.4
 uiautomator2==3.3.3
 cloudscraper==1.2.71
-opencv-python==4.11.0.86
-opencv-python-headless==4.11.0.86
