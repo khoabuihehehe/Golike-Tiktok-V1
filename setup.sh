@@ -63,7 +63,6 @@ install_pkg "adbutils" "2.9.3"
 install_pkg "requests" "2.32.4"
 install_pkg "uiautomator2" "3.3.3"
 install_pkg "cloudscraper" "1.2.71"
-install_pkg "opencv-python-headless" "4.11.0.86"
 divider
 step "Kiểm tra module đã cài"
 divider
