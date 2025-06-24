@@ -47,13 +47,13 @@ echo -ne "${CYAN}Đang cài lxml==5.4.0...${NC} "
 pip uninstall -y lxml > /dev/null 2>&1
 CFLAGS="-Wno-error=incompatible-function-pointer-types -O0 -I/data/data/com.termux/files/usr/include" \
 LDFLAGS="-L/data/data/com.termux/files/usr/lib" \
-PYTHONWARNINGS=ignore pip install -q lxml==5.4.0 2>/dev/null
+pip install -q lxml==5.4.0 2>/dev/null
 [ $? -eq 0 ] && echo -e "${GREEN}✔ Thành công${NC}" || fail "Cài lxml thất bại"
 install_pkg() {
 local name="$1"
 local version="$2"
 echo -ne "${CYAN}Đang cài ${name}==${version}...${NC} "
-PYTHONWARNINGS=ignore pip install -q "${name}==${version}" 2>/dev/null || fail "Cài ${name} thất bại"
+pip install -q "${name}==${version}" 2>/dev/null || fail "Cài ${name} thất bại"
 echo -e "${GREEN}✔ Thành công${NC}"
 }
 install_pkg "rich" "14.0.0"
