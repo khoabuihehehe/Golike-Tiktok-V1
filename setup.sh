@@ -1,5 +1,12 @@
 #!/bin/bash
-sed -i 's/\r$//' "$0"
+if grep -q $'\r' "$0"; then
+echo -e "\033[0;33m[*] Phát hiện dòng CRLF, đang chuyển sang LF...\033[0m"
+temp_script=$(mktemp)
+tr -d '\r' < "$0" > "$temp_script"
+chmod +x "$temp_script"
+exec "$temp_script"
+exit
+fi
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
@@ -56,7 +63,6 @@ install_pkg "adbutils" "2.9.3"
 install_pkg "requests" "2.32.4"
 install_pkg "uiautomator2" "3.3.3"
 install_pkg "cloudscraper" "1.2.71"
-install_pkg "opencv-python" "4.11.0.86"
 install_pkg "opencv-python-headless" "4.11.0.86"
 divider
 step "Kiểm tra module đã cài"
